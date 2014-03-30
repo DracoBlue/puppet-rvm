@@ -1,0 +1,11 @@
+name    'DracoBlue-rvm'
+version 'dev'
+source 'http://github.com/dracoblue/puppet-rvm'
+author 'DracoBlue'
+license 'MIT'
+summary 'Single User Ruby/Gem module (based on RVM) for Puppet >=3.0x'
+description 'This module can be used to install ruby+gems for a single user by using rvm internally.'
+project_page 'http://github.com/dracoblue/puppet-rvm'
+
+dependency 'puppetlabs/stdlib', '>= 4.0.0'
+dependency 'eirc/single_user_rvm', '>= 0.3.0'

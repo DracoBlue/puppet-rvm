@@ -98,8 +98,28 @@ rvm::gem { "jekyll":
 }
 ```
 
+### `rvm::bash_exec`
+
+Is a shell provider based version of exec, which runs the command in a bash login shell. This makes `rvm` and a proper
+`$PATH` available in the environment.
+
+The `rvm::bash_exec` command is used by `rvm::gem` and `rvm::ruby` to set up and work in the users environment.
+
+``` ruby
+rvm::bash_exec { "run jekyll":
+    user => "blog",
+    command => "jekyll build"
+}
+```
+
+Hint: `rvm::bash_exec` tries to behave exactly like `exec`. Internally it does a `su - $USER` + `bash --login` and heavy
+eascaping on quotation marks. So if you want to run a command only under certian conditions, use puppets `unless` and
+`onlyif` parameters instead of such: `if [ ... ]; then ... else; fi` stuff.
+
 # Changelog
 
+* dev
+  - renamed `rvm::bash-exec` to `rvm::bash_exec`
 * 0.1.0 (2014/03/30)
   - Initial release
 

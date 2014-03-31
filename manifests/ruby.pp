@@ -13,7 +13,7 @@ define rvm::ruby (
     require => [Single_User_Rvm::Install[$user]]
   }
 
-  rvm::bash-exec { "rvm-switched-for-${user}":
+  rvm::bash_exec { "rvm-switched-for-${user}":
     command => "rvm use --default ${version}",
     user => $user,
     logoutput => false,

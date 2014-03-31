@@ -119,6 +119,7 @@ eascaping on quotation marks. So if you want to run a command only under certian
 # Changelog
 
 * dev
+  - fixed cwd in `rvm::bash_exec` #1
   - renamed `rvm::bash-exec` to `rvm::bash_exec`
 * 0.1.0 (2014/03/30)
   - Initial release

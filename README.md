@@ -118,6 +118,8 @@ eascaping on quotation marks. So if you want to run a command only under certian
 
 # Changelog
 
+* 0.2.1 (2014/04/10)
+  - replaced self made shell arg escaping with puppets shellquote #1
 * 0.2.0 (2014/03/31)
   - fixed cwd in `rvm::bash_exec` #1
   - renamed `rvm::bash-exec` to `rvm::bash_exec`

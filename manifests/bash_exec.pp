@@ -19,30 +19,27 @@ define rvm::bash_exec (
   $unless = undef
 ) {
   if $cwd == undef {
-    $command_prefix = "/bin/su -l ${user} -c \"/bin/bash --login -c \\\""
+    $command_prefix = ""
   } else {
-    $command_prefix = "/bin/su -l ${user} -c \"/bin/bash --login -c \\\"cd ${cwd} && "
+    $command_prefix = "cd ${cwd} && "
   }
-  $command_suffix = "\\\"\""
 
-  $escaped_command = regsubst($command, "\"", "\\\"", 'G')
+  $escaped_command = join(["/bin/su -l ${user} -c ", shellquote(join(['/bin/bash --login -c ', shellquote(join([$command_prefix, $command], ""))], ""))], "")
 
   if $unless == undef {
     $escaped_unless = undef
   } else {
-    $unless_with_escaped_quotes = regsubst($unless, "\"", "\\\"", 'G')
-    $escaped_unless = "${$command_prefix}${unless_with_escaped_quotes}${command_suffix}"
+    $escaped_unless = join(["/bin/su -l ${user} -c ", shellquote(join(['/bin/bash --login -c ', shellquote(join([$command_prefix, $unless], ""))], ""))], "")
   }
 
   if $onlyif == undef {
     $escaped_onlyif = undef
   } else {
-    $onlyif_with_escaped_quotes = regsubst($onlyif, "\"", "\\\"", 'G')
-    $escaped_onlyif = "${$command_prefix}${onlyif_with_escaped_quotes}${command_suffix}"
+    $escaped_onlyif = join(["/bin/su -l ${user} -c ", shellquote(join(['/bin/bash --login -c ', shellquote(join([$command_prefix, $onlyif], ""))], ""))], "")
   }
 
   exec { $name:
-    command => "${$command_prefix}${escaped_command}${command_suffix}",
+    command => $escaped_command,
     creates => $creates,
     cwd => $cwd,
     environment => $environment,

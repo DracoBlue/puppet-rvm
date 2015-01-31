@@ -6,7 +6,7 @@ module.
 * Latest Release: [![GitHub version](https://badge.fury.io/gh/DracoBlue%2Fpuppet-rvm.png)](https://github.com/DracoBlue/puppet-rvm/releases)
 * Official Site: http://dracoblue.net/
 
-puppet-rvm is copyright 2014 by DracoBlue http://dracoblue.net
+puppet-rvm is copyright 2014-2015 by DracoBlue http://dracoblue.net
 
 # Installation
 
@@ -118,6 +118,8 @@ eascaping on quotation marks. So if you want to run a command only under certian
 
 # Changelog
 
+# 0.3.0 (2015/01/31)
+  - added gpg key installation to fix https://github.com/eirc/puppet-single_user_rvm/pull/5
 * 0.2.1 (2014/04/10)
   - replaced self made shell arg escaping with puppets shellquote #1
 * 0.2.0 (2014/03/31)

@@ -33,6 +33,9 @@ $ git clone https://github.com/DracoBlue/puppet-rvm.git rvm
 ## Example
 
 ``` ruby
+user { "blog":
+}
+
 rvm::ruby { "my blog":
     user => "blog",
     version => "ruby-2.0.0-p247"

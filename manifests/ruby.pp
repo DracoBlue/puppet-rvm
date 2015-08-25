@@ -1,10 +1,12 @@
 define rvm::ruby (
+  $home = "/home/${user}",
   $user,
   $version
 ) {
   # FIXME: we need to use $user as name here, since single_user_rvm::install_ruby expects it!
   single_user_rvm::install { "${user}":
     user => $user,
+    home => $home,
     require => [Exec['rvm-fix-to-install-single-user-rvm-gpg-key']]
   }
 
@@ -32,6 +34,7 @@ define rvm::ruby (
 
   single_user_rvm::install_ruby { "ruby-${version}-for-${user}":
     user => $user,
+    home => $home,
     ruby_string => $version,
     require => [Single_User_Rvm::Install[$user]]
   }
